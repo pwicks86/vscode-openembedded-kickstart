@@ -1,0 +1,36 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "OpenEmbedded Kickstart",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+            "match": "#.*",
+            "name": "comment.line.number-sign"
+        }
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.wks",
+				"match": "\\b(part|partition|bootloader)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.wks",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.wks",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.wks"
+}

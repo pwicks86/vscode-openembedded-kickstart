@@ -1,0 +1,25 @@
+{
+    "name": "openembedded-kickstart",
+    "displayName": "openembedded-kickstart",
+    "description": "Basic support for OpenEmbedded Kickstart files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.54.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "wks",
+            "aliases": ["OpenEmbedded Kickstart", "wks"],
+            "extensions": [".wks",".wks.in"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "wks",
+            "scopeName": "source.wks",
+            "path": "./syntaxes/wks.tmLanguage.json"
+        }]
+    }
+}

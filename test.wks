@@ -1,0 +1,23 @@
+#part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot --active --align 4096 --size 20
+#part / --source rootfs --ondisk mmcblk --fstype=ext4 --label rootfs_A  --align 8192 --extra-space 200
+#part / --source rootfs --ondisk mmcblk --fstype=ext4 --label rootfs_B  --align 8192 --extra-space 200
+#part /data --ondisk mmcblk --fstype=ext4 --label data --size 128M --align 8192 --extra-space 0
+
+#bootloader --ptable msdos
+
+#bootloader --ptable gpt --timeout=5 --append="console=ttyS0,115200"
+#part /boot --source bootimg-efi --sourceparams="loader=systemd-boot" --fstype=vfat --ondisk sda --label boot0 --active --align 1024 --fixed-size=100
+#part /boot1  --sourceparams="loader=systemd-boot" --fstype=vfat --ondisk sda --label boot1 --active --align 1024 --fixed-size=100
+#part / --source rootfs --ondisk sda --fstype=ext4 --label system0 --align 1024
+#part /system1 --source rootfs --ondisk sda --fstype=ext4 --label system1 --align 1024
+
+# bootloader --ptable gpt 
+# part /boot --source bootimage-
+
+part /boot --source bootimg-efi --sourceparams="loader=grub-efi" --ondisk sda --label msdos --active --align 1024
+
+part / --source rootfs --ondisk sda --fstype=ext4 --label platform --align 1024 --use-uuid
+
+part swap --ondisk sda --size 44 --label swap1 --fstype=swap
+
+bootloader --ptable gpt --timeout=5 --append="rootfstype=ext4 console=ttyS0,115200 console=tty0"
